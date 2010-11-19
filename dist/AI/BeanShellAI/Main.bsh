@@ -1,0 +1,29 @@
+
+//static import shipcraft.utils.Constants.*;
+import shipcraft.model.Field;
+import shipcraft.model.Ship;
+import shipcraft.model.Action;
+import shipcraft.ai.ship.SmartAI;
+import shipcraft.intrfc.ShiAI;
+import java.util.HashMap;
+import java.util.Set;
+
+public class BeanShellAI extends SmartAI {
+
+    public Action getAction(String myShipId, Field field, boolean isTeamMatch) {
+        super.getAction(myShipId, field, isTeamMatch);
+    }
+
+    /** Должен возвращать имя корабля */
+    public String getShipName(){
+        return "BeanShellShip";
+    }
+
+    /** Должен возвращать название команды корабля */
+    public String getTeamName(){
+        return "BeanShellShipTeam";
+    }
+
+}
+
+bshAi = new BeanShellAI();
