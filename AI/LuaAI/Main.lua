@@ -1,17 +1,14 @@
-
 local luaAI = luajava.createProxy("shipcraft.intrfc.ShipAI",
 {
-    getUpgrade = function()
-        return luajava.newInstance("shipcraft.model.Action","move")
-    end
+    getAction = function(corpusId, field, isTeamMatch)
+        return luajava.newInstance("shipcraft.model.Action","move");
+    end,
     
     getShipName = function()
-        return "LuaShip"
-    end
+        return "LuaShip";
+    end,
 
     getTeamName = function()
-        return "LuaAI"
+        return "LuaAI";
     end
-}
-)
-
+});

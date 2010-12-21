@@ -127,6 +127,7 @@ public class ScriptManager {
             ScriptEngine engine = factory.getEngineByExtension(extension);
             registerAPI(engine);
             fReader = new FileReader(aiFolderPath + "/" + aiMainName);
+            System.out.println("Engine " + engine);
             ShipAI ai = (ShipAI) engine.eval(fReader);
             if (ai != null) System.out.println("--> " + aiName + " [loaded]");
             //Invocable invocable = (Invocable) engine;
@@ -134,7 +135,7 @@ public class ScriptManager {
             //ai.getAction(null, null, false);//new shipcraft.model.Field());
             return ai;
         } catch (Exception ex) {
-//            ex.printStackTrace();
+            ex.printStackTrace();
             return null;
         } catch (Error er){
             er.printStackTrace();

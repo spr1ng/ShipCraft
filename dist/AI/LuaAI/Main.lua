@@ -1,6 +1,5 @@
 
-local luaAI = luajava.createProxy("shipcraft.intrfc.ShipAI",
-{
+local luaAI = luajava.createProxy("shipcraft.intrfc.ShipAI", {
     getUpgrade = function()
         return luajava.newInstance("shipcraft.model.Action","move")
     end
