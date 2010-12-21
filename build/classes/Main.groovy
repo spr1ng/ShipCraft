@@ -13,9 +13,8 @@ public class GroovyAI extends DefaultShipAI {
      
     public Action getAction(String myShipId, Field field, boolean isTeamMatch) {
         initAI(myShipId, field, isTeamMatch);
-        Ship myShip = getMyShip();
         if (hpMin()){
-            if (!upgrade) {
+            if (upgrade) {
                 return getUpgrade();
             }
             setState(move: true, attack:false, upgrade: false);
@@ -29,7 +28,7 @@ public class GroovyAI extends DefaultShipAI {
                 return moveAction;
             } else {
                 if (!attack){
-                    if (myShip.getMissileQuantity() > 0){
+                    if (getMyShip().getMissileQuantity() > 0){
                         return securedAttackAction();
                     }
                 }
@@ -54,7 +53,7 @@ public class GroovyAI extends DefaultShipAI {
     }
 
     @Override
-    public Action getUpgrade(){
+    Action getUpgrade(){
         setState(move:false, attack:false, upgrade:true);
         int decision = getRanInt(5);
         switch (decision){
@@ -64,7 +63,7 @@ public class GroovyAI extends DefaultShipAI {
         }
     }
 
-    private void setState(Map map){
+    void setState(Map map){
         this.move = map.move;
         this.attack = map.attack;
         this.upgrade = map.upgrade;

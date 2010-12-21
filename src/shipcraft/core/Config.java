@@ -93,92 +93,88 @@ public class Config {
     public static String AI_PATH;
     /** Название главного класса подгружаемого AI */
     public static String SCRIPT_MAIN;
-    private static Properties prop;
+    private static SmartProperties prop;
 
     private static void init() {
     //GAME     /////////////////////////////////////////////////////////////////
         /** Название игры */
-        GAME_NAME = get("GAME_NAME") != null ? getString("GAME_NAME")                           : "Ship Craft v1.0" ;
+        GAME_NAME = prop.getProperty("GAME_NAME", "Ship Craft v1.0");
         /** Режим отладки */
-        IS_DEBUG_MODE = get("IS_DEBUG_MODE") != null ? getBool("IS_DEBUG_MODE")                 : false;
+        IS_DEBUG_MODE = prop.getProperty("IS_DEBUG_MODE", false);
         /** Командный режим */
-        IS_TEAM_MODE = get("IS_TEAM_MODE") != null ? getBool("IS_TEAM_MODE")                    : true;
+        IS_TEAM_MODE = prop.getProperty("IS_TEAM_MODE", true);
         /** Режим автоматической перезагрузки интеллектов из скриптов при каждом ходе корабля */
-        IS_LIVE_SCRIPT = get("IS_LIVE_SCRIPT") != null ? getBool("IS_LIVE_SCRIPT")              : false;
+        IS_LIVE_SCRIPT = prop.getProperty("IS_LIVE_SCRIPT", false);
         /** Пауза при выполнении перемещения тела на 1 клетку поля */
-        MOVEMENT_DELAY = get("MOVEMENT_DELAY") != null ? getInt("MOVEMENT_DELAY")               : 30;
+        MOVEMENT_DELAY = prop.getProperty("MOVEMENT_DELAY", 30);
         /** Пауза между выполнением действий кораблей */
-        ACTION_DELAY = get("ACTION_DELAY") != null ? getInt("ACTION_DELAY")                     : 300;
+        ACTION_DELAY = prop.getProperty("ACTION_DELAY", 300);
     //VIEW     /////////////////////////////////////////////////////////////////
         /** Длина фрейма */
-        FRAME_WIDTH = get("FRAME_WIDTH") != null ? getInt("FRAME_WIDTH")                        : 1280;//1190;
+        FRAME_WIDTH = prop.getProperty("FRAME_WIDTH", 1280);//1190
         /** Длина фрейма */
-        FRAME_HEIGHT = get("FRAME_HEIGHT") != null ? getInt("FRAME_HEIGHT")                     : 668;
+        FRAME_HEIGHT = prop.getProperty("FRAME_HEIGHT", 668);
         /** Длина восточной панели */
-        EAST_PANEL_WIDTH = get("EAST_PANEL_WIDTH") != null ? getInt("EAST_PANEL_WIDTH")         : 676;//584;
+        EAST_PANEL_WIDTH = prop.getProperty("EAST_PANEL_WIDTH", 676);//584;
         /** Длина лэйблов */
-        LABEL_WIDTH = get("LABEL_WIDTH") != null ? getInt("LABEL_WIDTH")                        : 270;//172;
+        LABEL_WIDTH = prop.getProperty("LABEL_WIDTH", 270);//172;
     //FIELD    /////////////////////////////////////////////////////////////////
         /** Длина поля */
-        FIELD_WIDTH = get("FIELD_WIDTH") != null ? getInt("FIELD_WIDTH")                        : 60;
+        FIELD_WIDTH = prop.getProperty("FIELD_WIDTH", 60);
         /** Высота поля */
-        FIELD_HEIGHT = get("FIELD_HEIGHT") != null ? getInt("FIELD_HEIGHT")                     : 60;
+        FIELD_HEIGHT = prop.getProperty("FIELD_HEIGHT", 60);
         /** Кол-во кораблей на поле */
-        SHIP_QUANTITY = get("SHIP_QUANTITY") == null ? 10 : getInt("SHIP_QUANTITY");
+        SHIP_QUANTITY = prop.getProperty("SHIP_QUANTITY", 10);
         /** Минимальный интервал между кораблями */
-        SHIP_INTERVAL = get("SHIP_INTERVAL") != null ? getInt("SHIP_INTERVAL")                  : 8;
+        SHIP_INTERVAL = prop.getProperty("SHIP_INTERVAL", 8);
         /** Ширина клетки таблицы */
-        CELL_WIDTH = get("CELL_WIDTH") != null ? getInt("CELL_WIDTH")                           : 10;
+        CELL_WIDTH = prop.getProperty("CELL_WIDTH", 10);
         /** Высота клетки таблицы */
-        CELL_HEIGHT = get("CELL_HEIGHT") != null ? getInt("CELL_HEIGHT")                        : 10;
+        CELL_HEIGHT = prop.getProperty("CELL_HEIGHT", 10);
     //SHIP     /////////////////////////////////////////////////////////////////
         /** Минимально допустимая длина корабля */
-        SHIP_WIDTH_MIN = get("SHIP_WIDTH_MIN") != null ? getInt("SHIP_WIDTH_MIN")               : 3;
+        SHIP_WIDTH_MIN = prop.getProperty("SHIP_WIDTH_MIN", 3);
         /** Максимально допустимая длина корабля */
-        SHIP_WIDTH_MAX = get("SHIP_WIDTH_MAX") != null ? getInt("SHIP_WIDTH_MAX")               : 9;
+        SHIP_WIDTH_MAX = prop.getProperty("SHIP_WIDTH_MAX", 9);
         /** Минимально допустимая высота корабля */
-        SHIP_HEIGTH_MIN = get("SHIP_HEIGTH_MIN") != null ? getInt("SHIP_HEIGTH_MIN")            : 3;
+        SHIP_HEIGTH_MIN = prop.getProperty("SHIP_HEIGTH_MIN", 3);
         /** Максимально допустимая высота корабля */
-        SHIP_HEIGTH_MAX = get("SHIP_HEIGTH_MAX") != null ? getInt("SHIP_HEIGTH_MAX")            : 9;
+        SHIP_HEIGTH_MAX = prop.getProperty("SHIP_HEIGTH_MAX", 9);
         /** Кол-во фотонных ракет на борту корабля */
-        MISSILE_QUANTITY = get("MISSILE_QUANTITY") != null ? getInt("MISSILE_QUANTITY")         : 15;
+        MISSILE_QUANTITY = prop.getProperty("MISSILE_QUANTITY", 15);
         /** Кол-во ракет высокой разрушительной способности на борту корабля */
-        HEAVY_MISSILE_QUANTITY = 
-                get("HEAVY_MISSILE_QUANTITY") != null ? getInt("HEAVY_MISSILE_QUANTITY")        : 0;
+        HEAVY_MISSILE_QUANTITY = prop.getProperty("HEAVY_MISSILE_QUANTITY", 0);
         /** Кол-во ракет высокой разрушительной способности на борту корабля */
-        STUNNING_MISSILE_QUANTITY = 
-                get("STUNNING_MISSILE_QUANTITY") != null ? getInt("STUNNING_MISSILE_QUANTITY")  : 0;
+        STUNNING_MISSILE_QUANTITY = prop.getProperty("STUNNING_MISSILE_QUANTITY", 0);
         /** Кол-во доступных апгрейдов для корабля в начале игры */
-        UPGRADABLE_POINTS = get("UPGRADABLE_POINTS") != null ? getInt("UPGRADABLE_POINTS")      : 2;
+        UPGRADABLE_POINTS = prop.getProperty("UPGRADABLE_POINTS", 2);
         /** Броня корабля по умолчанию */
-        ARMOR = get("ARMOR") != null ? getInt("ARMOR")                                          : 0;
+        ARMOR = prop.getProperty("ARMOR", 0);
         /** Максимально возможная броня корабля */
-        ARMOR_MAX = get("ARMOR_MAX") != null ? getInt("ARMOR_MAX")                              : 7;
+        ARMOR_MAX = prop.getProperty("ARMOR_MAX", 7);
         /** Кол-во hp, восстанавливаемых кораблем в начале хода */
-        REGEN_HP_LEVEL = get("REGEN_HP_LEVEL") != null ? getInt("REGEN_HP_LEVEL")               : 1;
+        REGEN_HP_LEVEL = prop.getProperty("REGEN_HP_LEVEL", 1);
         /** Максимальное кол-во hp, восстанавливаемых кораблем в начале хода */
-        REGEN_HP_LEVEL_MAX = get("REGEN_HP_LEVEL_MAX") != null ? getInt("REGEN_HP_LEVEL_MAX")   : 7;
+        REGEN_HP_LEVEL_MAX = prop.getProperty("REGEN_HP_LEVEL_MAX", 7);
         /** Уровень критических атак корабля */
-        CRITICAL_ATTACK_LEVEL = 
-                get("CRITICAL_ATTACK_LEVEL") != null ? getInt("CRITICAL_ATTACK_LEVEL")          : 0;
+        CRITICAL_ATTACK_LEVEL = prop.getProperty("CRITICAL_ATTACK_LEVEL", 0);
         /** Масксимальный уровень критических атак корабля */
-        CRITICAL_ATTACK_LEVEL_MAX = 
-                get("CRITICAL_ATTACK_LEVEL_MAX") != null ? getInt("CRITICAL_ATTACK_LEVEL_MAX")  : 3; // 1 из 3-х
+        CRITICAL_ATTACK_LEVEL_MAX = prop.getProperty("CRITICAL_ATTACK_LEVEL_MAX", 3); // 1 из 3-х
         /** Уровень способности корабля уклоняться от атак */
-        EVASION_LEVEL = get("EVASION_LEVEL") != null ? getInt("EVASION_LEVEL")                  : 0;
+        EVASION_LEVEL = prop.getProperty("EVASION_LEVEL", 0);
         /** Максимальный ровень способности корабля уклоняться от атак  */
-        EVASION_LEVEL_MAX = get("EVASION_LEVEL_MAX") != null ? getInt("EVASION_LEVEL_MAX")      : 3; // 1 из 3-х
+        EVASION_LEVEL_MAX = prop.getProperty("EVASION_LEVEL_MAX", 3); // 1 из 3-х
         /** Время парализованности корабля при попадании в него парализующей ракеты */
-        STUN_TIME = get("STUN_TIME") != null ? getInt("STUN_TIME")                              : 2;
+        STUN_TIME = prop.getProperty("STUN_TIME", 2);
         /** Время максимальной парализованности корабля при попадании в него парализующей ракеты */
-        STUN_TIME_MAX = get("STUN_TIME_MAX") != null ? getInt("STUN_TIME_MAX")                  : 6;
+        STUN_TIME_MAX = prop.getProperty("STUN_TIME_MAX", 6);
         /** Максимальный уровень способности корабля быть невидимым */
-        INVISIBLE_LEVEL_MAX = get("INVISIBLE_LEVEL_MAX") != null ? getInt("INVISIBLE_LEVEL_MAX"): 5;
+        INVISIBLE_LEVEL_MAX = prop.getProperty("INVISIBLE_LEVEL_MAX", 5);
     //AI    ////////////////////////////////////////////////////////////////////
         /** Путь к AI */
-        AI_PATH = get("AI_PATH") != null ? getString("AI_PATH")                                 : "AI";
+        AI_PATH = prop.getProperty("AI_PATH", "AI");
         /** Название главного класса подгружаемого AI */
-        SCRIPT_MAIN = get("SCRIPT_MAIN") != null ? getString("SCRIPT_MAIN")                     : "Main";
+        SCRIPT_MAIN = prop.getProperty("SCRIPT_MAIN", "Main");
     }
 
     public static void load() {
@@ -186,28 +182,43 @@ public class Config {
     }
 
     public static void load(String fName) {
-        prop = new Properties();
+        prop = new SmartProperties();
         try {
             prop.load(new FileReader(fName));
             init();
         } catch (IOException ex) {
-            ex.printStackTrace();
+            ex.printStackTrace(System.err);
         }
     }
 
-    private static Object get(String key) {
-        return prop.get(key);
+    static class SmartProperties extends Properties {
+        public <T> T getProperty(String key, T defaultValue) {
+            String value = getProperty(key);
+            if (key == null || value == null) return defaultValue;
+            switch (Type.getByClass(defaultValue.getClass())) {
+                case BOOLEAN: return (T) Boolean.valueOf(value);
+                case INTEGER:
+                    try {
+                        return (T) Integer.valueOf(value);
+                    } catch (Exception e) {
+                        System.err.println("Warning: unparsable property value for: " + key);
+                        e.printStackTrace(System.err);
+                        //Passes to the default value
+                    }
+                default: return defaultValue;
+            }
+        }
     }
 
-    private static boolean getBool(String key) {
-        return Boolean.parseBoolean(prop.get(key).toString());
+    enum Type {
+        BOOLEAN, INTEGER, STRING;
+
+        public static Type getByClass(Class clazz){
+            if (Boolean.class.isAssignableFrom(clazz)) return BOOLEAN;
+            if (Integer.class.isAssignableFrom(clazz)) return INTEGER;
+            return STRING;
+        }
     }
 
-    private static int getInt(String key) {
-        return Integer.parseInt(prop.get(key).toString());
-    }
-
-    private static String getString(String key) {
-        return prop.get(key).toString();
-    }
 }
+
