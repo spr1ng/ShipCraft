@@ -2,33 +2,18 @@ importPackage(Packages.shipcraft.utils);
 importPackage(Packages.shipcraft.model);
 importPackage(Packages.shipcraft.core);
 importPackage(Packages.shipcraft.ai.ship);
-importPackage(Packages.shipcraft.intrfc);
 
-//function JsAI(){
-//    getAction: function(shiId, field){
-//        return Constants.MU;
-//    }
-//}
-//
-//JsAI.prototype = new DefaultShipAI();
-//
-//var jsAi = new JsAI();
-//
-////println(jsAi);
-
-var v = {
-    getAction: function(shiId, field, isTeamMatch) {
-        return Constants.MU;
+v = new Packages.shipcraft.intrfc.ShipAI() {
+    getShipName: function(){
+        return "JsAI"
     },
-
-    getShipName: function() {
-        return "JsShip";
+    getAction: function(myShipId, field, isTeamMatch) {
+        return new Action("missile", 1,-1);
     },
     
-    getTeamName: function() {
-        return "JsShipTeam";
+    getTeamName: function(){
+        return "JsAITeam"
     }
 }
 
-
-var jsAI = new JavaAdapter(DefaultShipAI, v);
+//var t = JavaAdapter(Packages.shipcraft.intrfc.ShipAI, v);

@@ -38,6 +38,8 @@ public class DefaultShipAI implements ShipAI{
     /** All corpuses (enemies + allies) without this AI ship */
     private ArrayList<Corpus> allCorpuses;
 
+    public DefaultShipAI(){}
+
     public Field getField() {
         return field;
     }

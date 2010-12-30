@@ -9,12 +9,15 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Vector;
+import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import static shipcraft.core.Config.*;
 import static shipcraft.utils.Utils.*;
 import shipcraft.intrfc.ShipAI;
 import shipcraft.view.SplashScreen;
+
+import static java.lang.System.*;
 
 /**
  * @version $Id: ScriptManager.java 76 2010-06-23 02:05:43Z spr1ng $
@@ -123,16 +126,14 @@ public class ScriptManager {
             String aiMainName = getAiMainName(aiFolderPath);
             String extension = aiMainName.replaceFirst(".*[.]", "");
             if (extension.equalsIgnoreCase("lua")) extension = ".lua";//PENDING 
-            ScriptEngineManager factory = new ScriptEngineManager();
-            ScriptEngine engine = factory.getEngineByExtension(extension);
+            ScriptEngine engine = new ScriptEngineManager().getEngineByExtension(extension);
             registerAPI(engine);
             fReader = new FileReader(aiFolderPath + "/" + aiMainName);
-            System.out.println("Engine " + engine);
             ShipAI ai = (ShipAI) engine.eval(fReader);
-            if (ai != null) System.out.println("--> " + aiName + " [loaded]");
-            //Invocable invocable = (Invocable) engine;
-            //ShipAI ai = invocable.getInterface(ShipAI.class);
-            //ai.getAction(null, null, false);//new shipcraft.model.Field());
+//            Invocable invocable = (Invocable) engine;
+//            Object o = engine.eval(fReader);
+//            ShipAI ai = invocable.getInterface(o, ShipAI.class);
+            if (ai != null) out.println("--> " + aiName + " [loaded]");
             return ai;
         } catch (Exception ex) {
             ex.printStackTrace();

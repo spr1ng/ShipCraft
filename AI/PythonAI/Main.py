@@ -6,16 +6,16 @@ class PythonAI(DefaultShipAI):
         pass
 
     def getUpgrade(myShipId):
-        return Action(u'width++')
+        return Action('width++')
 
 # Должен возвращать имя корабля
     def getShipName():
-        return u'PythonShip'
+        return 'PythonShip'
 
     # Должен возвращать название команды корабля
     def getTeamName():
-        return u'PythonShipTeam'
+        return 'PythonShipTeam'
 
 pythonAi = PythonAI()
-print pythonAi
+#print pythonAi
     

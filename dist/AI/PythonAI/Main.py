@@ -2,19 +2,20 @@ from shipcraft.ai.ship import DefaultShipAI
 from shipcraft.model import Action
 
 class PythonAI(DefaultShipAI):
+    def __init__(self):
+        pass
 
     def getUpgrade(myShipId):
-        return Action("width++")
+        return Action('width++')
 
 # Должен возвращать имя корабля
     def getShipName():
-        return "PythonShip"
+        return 'PythonShip'
 
     # Должен возвращать название команды корабля
     def getTeamName():
-        return "PythonShipTeam"
+        return 'PythonShipTeam'
 
-    
 pythonAi = PythonAI()
 #print pythonAi
     

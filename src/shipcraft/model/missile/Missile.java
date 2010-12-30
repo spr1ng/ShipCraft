@@ -5,7 +5,7 @@
 
 package shipcraft.model.missile;
 
-import shipcraft.ai.DefaultMissileAI;
+import shipcraft.ai.missile.DefaultMissileAI;
 import shipcraft.model.Corpus;
 import static shipcraft.core.Config.*;
 import static shipcraft.utils.Utils.*;
