@@ -47,10 +47,10 @@ class RubyAI < AttackerShipAI
     my_ship = getMyShip
     my_ship.regenerateHp();
     if hp_min?
-       if @upgrade == 0
-         return getUpgrade
-       end
-      return secured_attack_action;
+      if @upgrade == 0
+        return getUpgrade
+      end
+      return getWiseRubyMoveAction(my_ship)[0]
     end
     if @move == 0
       move_action, x_a, y_a = getWiseRubyMoveAction(my_ship)
@@ -111,13 +111,11 @@ class RubyAI < AttackerShipAI
     my_middle_x = my_ship.getMiddleX
     my_middle_y = my_ship.getMiddleY
     for enemy in ships
-      #if enemy.getTeamName != my_ship.getTeamName
-        enemy_middle_x = enemy.getMiddleX
-        enemy_middle_y = enemy.getMiddleY
-        enemy_hp = enemy.getHp
-        d = d(enemy_middle_x, enemy_middle_y, my_middle_x, my_middle_y)
-        d_hash[enemy.getId] = [d, enemy_hp, enemy_middle_x, enemy_middle_y];
-      #end
+      enemy_middle_x = enemy.getMiddleX
+      enemy_middle_y = enemy.getMiddleY
+      enemy_hp = enemy.getHp
+      d = d(enemy_middle_x, enemy_middle_y, my_middle_x, my_middle_y)
+      d_hash[enemy.getId] = [d, enemy_hp, enemy_middle_x, enemy_middle_y];
     end
 
     max_data = d_hash.max_by{|key, value| value};
@@ -138,7 +136,7 @@ class RubyAI < AttackerShipAI
     speed = my_ship.getMaxSpeed;
     
     if enemy_hp < my_ship.getHp
-      speed = my_ship.getMaxSpeed/attantion_coefficient;
+      speed = my_ship.getMaxSpeed-1/attantion_coefficient-1;
       #Если враг правее и близко.
       if enemy_min_x >= my_middle_x
         x_move = Constants::MOVE_RIGHT#идем вправо
@@ -193,8 +191,7 @@ class RubyAI < AttackerShipAI
   end
 
   def d(enemy_middle_x, enemy_middle_y, my_middle_x, my_middle_y)
-    d = Math.sqrt((my_middle_x - enemy_middle_x)**2 + (my_middle_y - enemy_middle_y)**2);
-    d
+    Math.sqrt((my_middle_x - enemy_middle_x)**2 + (my_middle_y - enemy_middle_y)**2);
   end
 
   #Должен возвращать имя корабля

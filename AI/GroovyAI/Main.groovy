@@ -45,7 +45,7 @@ public class GroovyAI extends DefaultShipAI {
             println("AI_Groovy_SECURED_ATTACK");
             return action;
         }
-        return getUpgrade();
+        return getMoveAction();
     }
 
     boolean hpMin(){
